@@ -1,4 +1,3 @@
 *.log
-*.json
+/*.json
 __pycache__/
-!workflows/
