@@ -1,0 +1,98 @@
+{
+  "plugin_ComfyUI-Impact-Pack.disabled": {
+    "url": "https://github.com/ltdrdata/ComfyUI-Impact-Pack",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104461.812865
+  },
+  "plugin_ComfyUI-VideoHelperSuite": {
+    "url": "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104461.934108
+  },
+  "plugin_ComfyUI-KJNodes": {
+    "url": "https://github.com/kijai/ComfyUI-KJNodes.git",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104461.973641
+  },
+  "plugin_ComfyUI-LTXVideo": {
+    "url": "https://github.com/Lightricks/ComfyUI-LTXVideo",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.088683
+  },
+  "plugin_rgthree-comfy": {
+    "url": "https://github.com/rgthree/rgthree-comfy",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.089008
+  },
+  "plugin_ComfyUI-Custom-Scripts": {
+    "url": "https://github.com/pythongosssss/ComfyUI-Custom-Scripts.git",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.091699
+  },
+  "plugin_ComfyUI_UltimateSDUpscale.disabled": {
+    "url": "https://github.com/ssitu/ComfyUI_UltimateSDUpscale",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.092271
+  },
+  "plugin_ComfyUI_IPAdapter_plus.disabled": {
+    "url": "https://github.com/cubiq/ComfyUI_IPAdapter_plus",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.092904
+  },
+  "plugin_ComfyUI-WanVideoWrapper": {
+    "url": "https://github.com/kijai/ComfyUI-WanVideoWrapper",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.103925
+  },
+  "plugin_ComfyUI-RMBG.disabled": {
+    "url": "https://github.com/1038lab/ComfyUI-RMBG",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.1199
+  },
+  "plugin_ComfyUI_Custom_Nodes_AlekPet.disabled": {
+    "url": "https://github.com/AlekPet/ComfyUI_Custom_Nodes_AlekPet",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.306283
+  },
+  "plugin_was-node-suite-comfyui.disabled": {
+    "url": "https://github.com/WASasquatch/was-node-suite-comfyui.git",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.506871
+  },
+  "plugin_comfyui_controlnet_aux.disabled": {
+    "url": "https://github.com/Fannovel16/comfyui_controlnet_aux",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.522632
+  },
+  "plugin_efficiency-nodes-comfyui.disabled": {
+    "url": "https://github.com/jags111/efficiency-nodes-comfyui.git",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.709904
+  },
+  "plugin_ComfyUI-Manager.disabled": {
+    "url": "https://github.com/Comfy-Org/ComfyUI-Manager",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.878062
+  },
+  "plugin_ComfyUI-GGUF": {
+    "url": "https://github.com/city96/ComfyUI-GGUF",
+    "matched": true,
+    "status": "未知",
+    "last_updated": 1786104462.92463
+  }
+}

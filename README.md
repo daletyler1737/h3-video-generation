@@ -91,6 +91,24 @@ python h3_t2v.py "A young anime girl walks through a neon-lit street at night, r
 | `H3-首尾帧图生视频-fl2v.json` | 首帧+尾帧→过渡（转场/运镜）/ First+last frame → transition |
 | `H3-伪图像生成-pseudo.json` | 文字→静态图（分镜/海报）/ Text → still image (storyboard/poster) |
 
+## 加速方案 / Acceleration
+
+| 方案 / Method | 原理 / How | 提速 / Speedup | 来源 / Source |
+|---|---|---|---|
+| **Spectrum**（推荐）| 切比雪夫谱特征预测，跳过部分 transformer 计算 | ~2x（本机实测采样 15s→7s/步）| https://github.com/xmarre/ComfyUI-Spectrum-MiniMax-H3 |
+| NB-H3-HyperStep | 复用中间 transformer block 结果 | ~60% | https://github.com/biyuhe3442-cmd/ComfyUI-NB-H3-HyperStep |
+| MiniMax-H3-Turbo | 4 步少步采样器 | 数倍 | ComfyUI-Manager 搜 "MiniMax-H3 Turbo" |
+| INT8 量化 + nunchaku | pruned_int8_convrot 模型 | ~2-3x | ComfyUI-nunchaku |
+| TE fp16_accumulation | FP16 累积计算 | 45%（显存充足时）| TE 启动器 |
+
+**Spectrum 安装与使用**（本仓库已含加速工作流）：
+```bash
+cd ComfyUI/custom_nodes
+git clone https://github.com/xmarre/ComfyUI-Spectrum-MiniMax-H3.git
+# 重启 ComfyUI 后，用 workflows/H3-t2v-Spectrum加速.json
+```
+节点插在 `MiniMaxH3SigmaShift` 和 `KSampler` 之间（MODEL→MODEL）。默认参数即用；`enabled=false` 可关闭。注意：Spectrum 是近似加速，快速动作时细节（眼睛/手指）可能变形，质量敏感场景请 A/B 对比。
+
 ## 常见坑 / Pitfalls
 
 - **`MiniMaxH3ImageToVideo` 输出是 [CONDITIONING, LATENT] 两个槽位**：`KSampler.positive` 接 output_0（节点自带条件，不需要额外 CLIPTextEncode positive），`latent_image` 接 output_1。接反报 `return_type_mismatch`。 / The node outputs TWO slots: positive ← output_0 (CONDITIONING, built-in), latent_image ← output_1 (LATENT)
