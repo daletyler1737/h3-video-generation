@@ -90,6 +90,9 @@ python h3_t2v.py "A young anime girl walks through a neon-lit street at night, r
 | `H3-参考图视频-ref2va.json` | 角色参考图→说话/动作 / Character image → speaking & moving |
 | `H3-首尾帧图生视频-fl2v.json` | 首帧+尾帧→过渡（转场/运镜）/ First+last frame → transition |
 | `H3-伪图像生成-pseudo.json` | 文字→静态图（分镜/海报）/ Text → still image (storyboard/poster) |
+| `H3-t2v-Spectrum加速.json` | t2v + Spectrum 加速节点 / t2v with Spectrum (~2x faster sampling) |
+| `H3-ref2va-Spectrum加速.json` | ref2va + Spectrum 加速 / ref2va with Spectrum |
+| `H3-fl2v-Spectrum加速.json` | fl2v + Spectrum 加速 / fl2v with Spectrum |
 
 ## 加速方案 / Acceleration
 
