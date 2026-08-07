@@ -1,0 +1,3 @@
+*.log
+pseudo_api.json
+__pycache__/
