@@ -1,3 +1,4 @@
 *.log
-pseudo_api.json
+*.json
 __pycache__/
+!workflows/
