@@ -1,0 +1,999 @@
+{
+ "last_node_id": 14,
+ "last_link_id": 17,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "LoadImage",
+   "pos": [
+    40,
+    100
+   ],
+   "size": [
+    280,
+    120
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "image",
+     "type": [
+      "DOAX-VenusVacation_240817_161512.jpg",
+      "cwf_budapest.jpg",
+      "cwf_dance.jpg",
+      "cwf_iceberg.jpg",
+      "cwf_inpaint_example_mask.png",
+      "cwf_inpaint_example_mask_SDXL.png",
+      "cwf_marble_statue.jpg",
+      "cwf_portrait.jpg",
+      "example.png",
+      "h3_test_frame.png"
+     ],
+     "widget": {
+      "name": "image"
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "IMAGE",
+     "links": [
+      5
+     ]
+    },
+    {
+     "name": "output_1",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "h3_test_frame.png"
+   ]
+  },
+  {
+   "id": 2,
+   "type": "UnetLoaderGGUF",
+   "pos": [
+    380,
+    100
+   ],
+   "size": [
+    280,
+    120
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "unet_name",
+     "type": [
+      "MiniMax-H3-FL2VA-Q4_K_M.gguf",
+      "MiniMax-H3-Ref2VA-Q4_K_S.gguf",
+      "ltx-2-3-22b-dev-Q2_K.gguf",
+      "ltxv-2b-0.9.6-dev-04-25-Q4_K_M.gguf",
+      "ltxv-2b-0.9.6-dev-04-25-Q5_K_M.gguf"
+     ],
+     "widget": {
+      "name": "unet_name"
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "MODEL",
+     "links": [
+      1
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "UnetLoaderGGUF"
+   },
+   "widgets_values": [
+    "MiniMax-H3-Ref2VA-Q4_K_S.gguf"
+   ]
+  },
+  {
+   "id": 3,
+   "type": "MiniMaxH3SigmaShift",
+   "pos": [
+    720,
+    100
+   ],
+   "size": [
+    280,
+    160
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 1
+    },
+    {
+     "name": "shift_video",
+     "type": "FLOAT",
+     "widget": {
+      "name": "shift_video"
+     }
+    },
+    {
+     "name": "shift_audio",
+     "type": "FLOAT",
+     "widget": {
+      "name": "shift_audio"
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "MODEL",
+     "links": [
+      7
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "MiniMaxH3SigmaShift"
+   },
+   "widgets_values": [
+    12.0,
+    3.0
+   ]
+  },
+  {
+   "id": 4,
+   "type": "CLIPLoaderGGUF",
+   "pos": [
+    1060,
+    100
+   ],
+   "size": [
+    280,
+    140
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip_name",
+     "type": [
+      "gemma_3_12B_it_fp8_scaled.safetensors",
+      "ltx-2.3-22b-dev_embeddings_connectors.safetensors",
+      "ltx-2.3_text_projection_bf16.safetensors",
+      "qwen3vl_32b_minimax_h3-Q4_K_M.gguf",
+      "qwen3vl_32b_minimax_h3-Q4_K_M.gguf",
+      "t5-v1_1-xxl-encoder-Q5_K_M.gguf",
+      "t5-v1_1-xxl-encoder-Q5_K_M.gguf"
+     ],
+     "widget": {
+      "name": "clip_name"
+     }
+    },
+    {
+     "name": "type",
+     "type": [
+      "stable_diffusion",
+      "stable_cascade",
+      "sd3",
+      "stable_audio",
+      "mochi",
+      "ltxv",
+      "pixart",
+      "cosmos",
+      "lumina2",
+      "wan",
+      "hidream",
+      "chroma",
+      "ace",
+      "omnigen2",
+      "qwen_image",
+      "hunyuan_image",
+      "flux2",
+      "ovis",
+      "longcat_image",
+      "cogvideox",
+      "lens",
+      "pixeldit",
+      "ideogram4",
+      "boogu",
+      "krea2",
+      "joyimage",
+      "mage",
+      "minimax"
+     ],
+     "widget": {
+      "name": "type"
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "CLIP",
+     "links": [
+      2,
+      6
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoaderGGUF"
+   },
+   "widgets_values": [
+    "qwen3vl_32b_minimax_h3-Q4_K_M.gguf",
+    "minimax"
+   ]
+  },
+  {
+   "id": 5,
+   "type": "VAELoader",
+   "pos": [
+    1400,
+    100
+   ],
+   "size": [
+    280,
+    120
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "vae_name",
+     "type": [
+      "LTX-Video-0.9.6-VAE-BF16.safetensors",
+      "ltx-2.3-22b-dev_audio_vae.safetensors",
+      "ltx-2.3-22b-dev_video_vae.safetensors",
+      "minimax_h3_audio_vae_fp32.safetensors",
+      "minimax_h3_video_vae_fp16.safetensors",
+      "taeltx2_3.safetensors",
+      "wan_2.1_vae.safetensors",
+      "taesdxl",
+      "taesd",
+      "taef1",
+      "taesd3",
+      "pixel_space"
+     ],
+     "widget": {
+      "name": "vae_name"
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "VAE",
+     "links": [
+      3,
+      12
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "minimax_h3_video_vae_fp16.safetensors"
+   ]
+  },
+  {
+   "id": 6,
+   "type": "VAELoader",
+   "pos": [
+    1740,
+    100
+   ],
+   "size": [
+    280,
+    120
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "vae_name",
+     "type": [
+      "LTX-Video-0.9.6-VAE-BF16.safetensors",
+      "ltx-2.3-22b-dev_audio_vae.safetensors",
+      "ltx-2.3-22b-dev_video_vae.safetensors",
+      "minimax_h3_audio_vae_fp32.safetensors",
+      "minimax_h3_video_vae_fp16.safetensors",
+      "taeltx2_3.safetensors",
+      "wan_2.1_vae.safetensors",
+      "taesdxl",
+      "taesd",
+      "taef1",
+      "taesd3",
+      "pixel_space"
+     ],
+     "widget": {
+      "name": "vae_name"
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "VAE",
+     "links": [
+      4,
+      14
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "minimax_h3_audio_vae_fp32.safetensors"
+   ]
+  },
+  {
+   "id": 7,
+   "type": "MiniMaxH3ReferenceToVideo",
+   "pos": [
+    2080,
+    100
+   ],
+   "size": [
+    280,
+    280
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 2
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 3
+    },
+    {
+     "name": "audio_vae",
+     "type": "VAE",
+     "link": 4
+    },
+    {
+     "name": "prompt",
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     }
+    },
+    {
+     "name": "width",
+     "type": "INT",
+     "widget": {
+      "name": "width"
+     }
+    },
+    {
+     "name": "height",
+     "type": "INT",
+     "widget": {
+      "name": "height"
+     }
+    },
+    {
+     "name": "length",
+     "type": "INT",
+     "widget": {
+      "name": "length"
+     }
+    },
+    {
+     "name": "ref_image_size",
+     "type": "COMBO",
+     "widget": {
+      "name": "ref_image_size"
+     }
+    },
+    {
+     "name": "ref_image_0",
+     "type": "STRING",
+     "link": 5
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "CONDITIONING",
+     "links": [
+      8
+     ]
+    },
+    {
+     "name": "output_1",
+     "type": "LATENT",
+     "links": [
+      10
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "MiniMaxH3ReferenceToVideo"
+   },
+   "widgets_values": [
+    "<Picture 1> 中的主角在霓虹城市里跳舞，镜头环绕，配环境音",
+    768,
+    768,
+    58,
+    "match"
+   ]
+  },
+  {
+   "id": 8,
+   "type": "CLIPTextEncode",
+   "pos": [
+    2420,
+    100
+   ],
+   "size": [
+    280,
+    140
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 6
+    },
+    {
+     "name": "text",
+     "type": "STRING",
+     "widget": {
+      "name": "text"
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "CONDITIONING",
+     "links": [
+      9
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    ""
+   ]
+  },
+  {
+   "id": 9,
+   "type": "KSampler",
+   "pos": [
+    2760,
+    100
+   ],
+   "size": [
+    280,
+    300
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 7
+    },
+    {
+     "name": "seed",
+     "type": "INT",
+     "widget": {
+      "name": "seed"
+     }
+    },
+    {
+     "name": "steps",
+     "type": "INT",
+     "widget": {
+      "name": "steps"
+     }
+    },
+    {
+     "name": "cfg",
+     "type": "FLOAT",
+     "widget": {
+      "name": "cfg"
+     }
+    },
+    {
+     "name": "sampler_name",
+     "type": [
+      "euler",
+      "euler_cfg_pp",
+      "euler_ancestral",
+      "euler_ancestral_cfg_pp",
+      "heun",
+      "heunpp2",
+      "exp_heun_2_x0",
+      "exp_heun_2_x0_sde",
+      "dpm_2",
+      "dpm_2_ancestral",
+      "lms",
+      "dpm_fast",
+      "dpm_adaptive",
+      "dpmpp_2s_ancestral",
+      "dpmpp_2s_ancestral_cfg_pp",
+      "dpmpp_sde",
+      "dpmpp_sde_gpu",
+      "dpmpp_2m",
+      "dpmpp_2m_cfg_pp",
+      "dpmpp_2m_sde",
+      "dpmpp_2m_sde_gpu",
+      "dpmpp_2m_sde_heun",
+      "dpmpp_2m_sde_heun_gpu",
+      "dpmpp_3m_sde",
+      "dpmpp_3m_sde_gpu",
+      "ddpm",
+      "lcm",
+      "ipndm",
+      "ipndm_v",
+      "deis",
+      "res_multistep",
+      "res_multistep_cfg_pp",
+      "res_multistep_ancestral",
+      "res_multistep_ancestral_cfg_pp",
+      "gradient_estimation",
+      "gradient_estimation_cfg_pp",
+      "er_sde",
+      "seeds_2",
+      "seeds_3",
+      "sa_solver",
+      "sa_solver_pece",
+      "ddim",
+      "uni_pc",
+      "uni_pc_bh2"
+     ],
+     "widget": {
+      "name": "sampler_name"
+     }
+    },
+    {
+     "name": "scheduler",
+     "type": [
+      "simple",
+      "sgm_uniform",
+      "karras",
+      "exponential",
+      "ddim_uniform",
+      "beta",
+      "normal",
+      "linear_quadratic",
+      "kl_optimal"
+     ],
+     "widget": {
+      "name": "scheduler"
+     }
+    },
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 8
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 9
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 10
+    },
+    {
+     "name": "denoise",
+     "type": "FLOAT",
+     "widget": {
+      "name": "denoise"
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "LATENT",
+     "links": [
+      11,
+      13
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "widgets_values": [
+    42,
+    25,
+    1.0,
+    "euler",
+    "normal",
+    1.0
+   ]
+  },
+  {
+   "id": 10,
+   "type": "VAEDecode",
+   "pos": [
+    3100,
+    100
+   ],
+   "size": [
+    280,
+    140
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 11
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 12
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "IMAGE",
+     "links": [
+      15
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 11,
+   "type": "VAEDecodeAudio",
+   "pos": [
+    3440,
+    100
+   ],
+   "size": [
+    280,
+    140
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 13
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 14
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "AUDIO",
+     "links": [
+      16
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecodeAudio"
+   },
+   "widgets_values": []
+  },
+  {
+   "id": 12,
+   "type": "CreateVideo",
+   "pos": [
+    3780,
+    100
+   ],
+   "size": [
+    280,
+    160
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 15
+    },
+    {
+     "name": "fps",
+     "type": "FLOAT",
+     "widget": {
+      "name": "fps"
+     }
+    },
+    {
+     "name": "audio",
+     "type": "AUDIO",
+     "link": 16
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "VIDEO",
+     "links": [
+      17
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CreateVideo"
+   },
+   "widgets_values": [
+    24.0
+   ]
+  },
+  {
+   "id": 13,
+   "type": "SaveVideo",
+   "pos": [
+    4120,
+    100
+   ],
+   "size": [
+    280,
+    180
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "video",
+     "type": "VIDEO",
+     "link": 17
+    },
+    {
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     }
+    },
+    {
+     "name": "format",
+     "type": "COMBO",
+     "widget": {
+      "name": "format"
+     }
+    },
+    {
+     "name": "codec",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "codec"
+     }
+    }
+   ],
+   "outputs": [
+    {
+     "name": "output_0",
+     "type": "VIDEO",
+     "links": null
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "SaveVideo"
+   },
+   "widgets_values": [
+    "h3_ref2va",
+    "auto",
+    "auto"
+   ]
+  },
+  {
+   "id": 14,
+   "type": "MarkdownNote",
+   "pos": [
+    -450,
+    80
+   ],
+   "size": [
+    440,
+    340
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [],
+   "properties": {
+    "textHeight": 340,
+    "textWidth": 440
+   },
+   "widgets_values": [
+    "## H3 参考图生视频（ref2va）/ Reference-to-Video\n\n**EN:** Generate video using reference images (up to 9) to lock identity/style. The reference latent is injected every sampling step (never denoised). Use `<Picture i>` tags in prompt to reference them.\n\n**中文：** 用参考图片（最多 9 张）生成视频，锁定主体/风格一致性。参考 latent 每步注入不被去噪。提示词用 `<Picture 1>` 标签引用图片。\n\n**使用步骤**：\n1. 当前工作流带 1 个参考图输入（LoadImage → ref_image_0，测试图）\n2. 想多加参考：再添加 LoadImage 节点连到 MiniMaxH3ReferenceToVideo 的 ref_image_1/2...\n3. prompt 用 `<Picture 1>` 引用，例如：`<Picture 1> 中的主角在霓虹城市跳舞，镜头环绕`\n4. 点 Run 运行\n\n**关键参数**：ref_image_size = match（快）/ max（2048px 保真，慢数倍）；length 58→3秒/124≈5秒；steps 25；cfg=1.0\n\n**注意**：本工作流使用 Ref2VA 模型（MiniMax-H3-Ref2VA-Q4_K_S.gguf，已安装）。如需参考视频/音频输入，需扩展节点（LoadVideo/LoadAudio）。\n\n---\n\n## 📦 模型配置清单（Model Setup）\n\n**已安装模型（5 个，共 56GB，均在 ComfyUI/models/ 下）**\n| 文件 | 目录 | 大小 | 用途 |\n|------|------|------|------|\n| MiniMax-H3-FL2VA-Q4_K_M.gguf | models/unet/ | 18.5 GB | 文生视频/首尾帧主模型 |\n| MiniMax-H3-Ref2VA-Q4_K_S.gguf | models/unet/ | 18.5 GB | 参考模式模型 |\n| qwen3vl_32b_minimax_h3-Q4_K_M.gguf | models/text_encoders/ | 13.6 GB | Qwen3-VL-32B 文本编码器 |\n| minimax_h3_video_vae_fp16.safetensors | models/vae/ | 4.85 GB | 视频解码 VAE |\n| minimax_h3_audio_vae_fp32.safetensors | models/vae/ | 0.56 GB | 音频解码 VAE |\n\n**加载器配置**：UnetLoaderGGUF → 选对应模型；CLIPLoaderGGUF → clip_name=qwen3vl_32b_minimax_h3-Q4_K_M.gguf, **type=minimax**；VAELoader → 对应 VAE 文件。\n\n**下载地址**：ModelScope https://www.modelscope.cn/models/Abiray/MiniMax-H3-GGUF（快）/ HF镜像 https://hf-mirror.com/Abiray/MiniMax-H3-GGUF\n"
+   ]
+  }
+ ],
+ "links": [
+  [
+   1,
+   2,
+   0,
+   3,
+   0,
+   "MODEL"
+  ],
+  [
+   2,
+   4,
+   0,
+   7,
+   0,
+   "CLIP"
+  ],
+  [
+   3,
+   5,
+   0,
+   7,
+   0,
+   "VAE"
+  ],
+  [
+   4,
+   6,
+   0,
+   7,
+   0,
+   "VAE"
+  ],
+  [
+   5,
+   1,
+   0,
+   7,
+   0,
+   "STRING"
+  ],
+  [
+   6,
+   4,
+   0,
+   8,
+   0,
+   "CLIP"
+  ],
+  [
+   7,
+   3,
+   0,
+   9,
+   0,
+   "MODEL"
+  ],
+  [
+   8,
+   7,
+   0,
+   9,
+   0,
+   "CONDITIONING"
+  ],
+  [
+   9,
+   8,
+   0,
+   9,
+   0,
+   "CONDITIONING"
+  ],
+  [
+   10,
+   7,
+   1,
+   9,
+   0,
+   "LATENT"
+  ],
+  [
+   11,
+   9,
+   0,
+   10,
+   0,
+   "LATENT"
+  ],
+  [
+   12,
+   5,
+   0,
+   10,
+   0,
+   "VAE"
+  ],
+  [
+   13,
+   9,
+   0,
+   11,
+   0,
+   "LATENT"
+  ],
+  [
+   14,
+   6,
+   0,
+   11,
+   0,
+   "VAE"
+  ],
+  [
+   15,
+   10,
+   0,
+   12,
+   0,
+   "IMAGE"
+  ],
+  [
+   16,
+   11,
+   0,
+   12,
+   0,
+   "AUDIO"
+  ],
+  [
+   17,
+   12,
+   0,
+   13,
+   0,
+   "VIDEO"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {},
+ "version": 0.4
+}
