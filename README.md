@@ -95,12 +95,17 @@ python h3_t2v.py "A young anime girl walks through a neon-lit street at night, r
 
 - **`MiniMaxH3ImageToVideo` 输出是 [CONDITIONING, LATENT] 两个槽位**：`KSampler.positive` 接 output_0（节点自带条件，不需要额外 CLIPTextEncode positive），`latent_image` 接 output_1。接反报 `return_type_mismatch`。 / The node outputs TWO slots: positive ← output_0 (CONDITIONING, built-in), latent_image ← output_1 (LATENT)
 - UI 工作流 JSON 不能直接提交 API，要用脚本里的手写 prompt（节点链固定） / UI workflow JSON can't be POSTed directly; use the hand-built prompt in the script
+- **API 连接的节点 id 必须是字符串**：`["1", 0]` 而不是 `[1, 0]`，否则报 KeyError / API link node ids must be strings
+- **ref2va 旧版参数坑**：老工作流 JSON 用 `ref_image_0` 参数名，新版节点接口是 AUTOGROW 的 `ref_images`，API 格式为 `[["1", 0]]`（数组套数组）。旧名会报 `unexpected keyword argument 'ref_image_0'` / Old workflows use `ref_image_0`, new node API uses `ref_images` in `[["1",0]]` format
 - t2v 带音频必须用 FL2VA 模型，ref2va 用 Ref2VA 模型，别选错 / Use FL2VA for t2v-with-audio, Ref2VA for reference-image jobs
 - 提示词 cfg=1.0、sampler=euler、scheduler=normal 是 H3 的标准配置 / cfg 1.0 + euler + normal is the H3 standard
+- pseudo 伪图像工作流 length=8 太短时提示词引导力弱，出图可能与提示词不符；要出图可用更长 length（如 17-34）再取帧 / pseudo with length=8 may ignore the prompt; use longer length for better control
 
 ## 脚本 / Scripts
 
 - `h3_t2v.py` — 文生视频带音频 API 提交 + 进度轮询 / Text-to-video-with-audio API submit + progress polling
+- `workflow_to_api.py` — UI 工作流 JSON → API prompt 转换器（支持覆盖参数、空值删除参数）/ Convert UI workflow JSON to API prompt with overrides
+- `test_workflows.py` — 一键测试任意工作流：转换→提交→轮询，自动注入输出名前缀 / Test any workflow: convert → submit → poll
 
 ## License
 

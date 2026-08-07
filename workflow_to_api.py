@@ -44,15 +44,20 @@ def convert(ui_path: str, overrides: dict = None):
         # 某些节点 inputs 里没有但 widgets_values 有的（如 prompt 在 widgets_values[0]）
         prompt[str(nid)] = {"class_type": ctype, "inputs": inputs}
 
-    # 覆盖参数: "5.prompt=xxx" / "5.length=72"
+    # 覆盖参数: "5.prompt=xxx" / "5.length=72" / "7.ref_image_0=" (空值=删除该参数)
     if overrides:
         for k, v in overrides.items():
             nid, _, pname = k.partition(".")
             if nid in prompt and pname:
+                if v == "":
+                    prompt[nid]["inputs"].pop(pname, None)
+                    continue
                 try:
                     prompt[nid]["inputs"][pname] = json.loads(v)
                 except Exception:
                     prompt[nid]["inputs"][pname] = v
+    # 检查节点是否用旧版参数名（UI JSON vs 当前节点接口不匹配时覆盖）
+    # AUTOGROW 动态输入: 连接直接以 ["from_id", slot] 形式接到 ref_images 即可
     return prompt
 
 
