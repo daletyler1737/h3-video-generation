@@ -181,6 +181,22 @@ python h3_t2v.py "A young anime girl walks through a neon-lit street at night, r
 | `超分-RealESRGAN-逐帧4x.json` | 逐帧 4 倍超分 / per-frame 4x upscale |
 | `超分-FlashVSR-480p到1080p.json` | FlashVSR 视频超分 480p → 1080p / FlashVSR video upscaling |
 
+## 子目录工作流 / Subfolder Workflows
+
+`workflows/` 下还有三个文件夹，按用途分类收录，共 84 个：
+
+Three extra folders under `workflows/`, 84 files in total:
+
+| 文件夹 / Folder | 数量 | 内容 / Contents |
+|---|---|---|
+| `6G备份/` | 5 | 早期 6G 版备份（与根目录 6G 版基本一致，留档用）/ early 6G backups |
+| `低显存/` | 18 | 熊猫怪兽分享的 4G / 6G / 8G 工作流拆包，每条流程独立自包含 / unpacked 4G-6G-8G pipelines, self-contained |
+| `熊猫怪兽分享/` | 61 | 社区分享包（含 H3 各项工作流与笔记）/ community-shared pack |
+
+> `低显存/` 里三个 `加LoRA` 工作流的 LoRA 节点**已清空**（原作者关联的 LoRA 与内容不符，公开仓库不保留该引用）：打开后自己在 `LoraLoaderModelOnly` 节点选你自己的 LoRA 即可，`strength_model = 0` 即关闭。
+>
+> The LoRA node inside the three `加LoRA` workflows under `低显存/` is **cleared on purpose** — the original reference didn't belong in a public repo. Pick your own LoRA in the `LoraLoaderModelOnly` node; `strength_model = 0` disables it.
+
 ## 加速方案 / Acceleration
 
 | 方案 / Method | 原理 / How | 提速 / Speedup | 来源 / Source |
